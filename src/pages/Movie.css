@@ -4,6 +4,7 @@
     flex-direction: column;
     max-width: 600px;
     margin: 2rem auto;
+    padding: 15px;
 }
 
 .movie-page svg{
@@ -15,9 +16,14 @@
     text-align: center;
 }
 
-.movie-card .movie-card img,
-.movie-card .movie-card h2,
-.movie-card .movie-card p{
+.movie-card img
+{
+    max-height: 70vh ;
+}
+
+.movie-card img,
+.movie-card h2,
+.movie-card p{
     margin-bottom: 1rem;
 }
 

@@ -1,6 +1,6 @@
 .container .title{
     color:rgb(170, 165, 165);
-    font-size: 2.3rem;
+    font-size: 2.1rem;
     text-align: center;
     margin: 2rem 0 1rem;
 }
@@ -12,21 +12,22 @@
 .movies-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 2rem;
+    justify-content: center;
+    padding: 1rem;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 1.3rem;
 }
 
 .movies-container div{
-    width: 30%;
+    width: 11rem;
     color: #fff;
     margin-bottom: 2.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: #111;
-    padding: 1rem;
+    padding: .5rem;
     transition: 0.5s;
 }
 
