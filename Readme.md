@@ -1,5 +1,7 @@
-# Projeto React 
+# BYMovies 
 
-consulta informações sobre filmes
+## Site para consulta de informações sobre filmes.
 
-[Ver Projeto](https://frolicking-kataifi-10a7db.netlify.app/)
+- Projeto feito utilizando ReactJs e api imdb
+
+[Ver Projeto](https://frolicking-kataifi-10a7db.netlify.app/) 
