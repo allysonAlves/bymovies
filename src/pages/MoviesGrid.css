@@ -76,26 +76,6 @@
     margin: 0 25px 15px 25px;
 }
 
-.down-nav-bar button{
-    width: 45px;
-    background-color: #121212;
-    color: #f7d354;
-    border-radius: 3px;
-    font-weight: bold;
-    box-shadow: 0 0 2px rgb(196, 195, 195);
-    transition: 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.down-nav-bar .none:hover{
-    box-shadow: 0 0 4px #f7d354;
-}
-
-.down-nav-bar .btnselected{
-    color: white;
-    box-shadow: 0 0 5px #ffffff;
-}
-
 .founds{
     display: flex;
     justify-content: center;
