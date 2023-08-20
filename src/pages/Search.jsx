@@ -6,6 +6,20 @@ const searchURL = import.meta.env.VITE_SEARCH;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 import "./MoviesGrid.css";
+import { CssBaseline, Pagination, ThemeProvider, createTheme } from "@mui/material";
+import { amber } from "@mui/material/colors";
+
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        light: '#757ce8',
+        main: amber[500],
+        dark: amber[500],
+        contrastText: '#000',
+      },
+    },
+  });
 
 const Search = () => {
     const [searchParams] = useSearchParams();
@@ -16,8 +30,8 @@ const Search = () => {
 
     const [[data,movies,pages],Setdata] = useState([[],[],0]);
    
-    const arrays = [1];
-    let buttons = [1];
+    // const arrays = [1];
+    // let buttons = [1];
 
     const getSearchedMovies = async(url) =>{        // accessing API
         const res = await fetch(url);
@@ -26,23 +40,23 @@ const Search = () => {
         Setdata([data, data.results, data.total_pages]);     
     }
 
-    const defineDownNavigation = () =>{             // create pages numbers array
-        const currentPage = parseInt(page);       
-        let filtred = [0];
-        let art = 2;              
+    // const defineDownNavigation = () =>{             // create pages numbers array
+    //     const currentPage = parseInt(page);       
+    //     let filtred = [0];
+    //     let art = 2;              
 
-        for (let i = 1; i < pages; i++) {
-            arrays[i] = i +1;
-            art++;   
-        }
+    //     for (let i = 1; i < pages; i++) {
+    //         arrays[i] = i +1;
+    //         art++;   
+    //     }
 
-        filtred = arrays.filter(e => e > currentPage - 5 && e <= currentPage );
-        filtred = filtred.concat(arrays.filter(e => e > currentPage && e < currentPage + 5));
+    //     filtred = arrays.filter(e => e > currentPage - 5 && e <= currentPage );
+    //     filtred = filtred.concat(arrays.filter(e => e > currentPage && e < currentPage + 5));
                
-        buttons = filtred;                    
-    }
+    //     buttons = filtred;                    
+    // }
 
-    defineDownNavigation();
+    // defineDownNavigation();
     
     useEffect(()=>{
         const searchWithQueryURL = `${searchURL}?${apiKey}&query=${query}&language=pt-BR&page=${page}`;       
@@ -52,27 +66,39 @@ const Search = () => {
     },[query,page]);
     
     return (
-        <div className="container">
-            <h2 className="title">
-                Resultados para: <span className="query-text">{query}</span>                
-            </h2>
-            <div className="founds">Founds: {data.total_results??0}</div>
-            <div className="movies-container">
-                {movies.length === 0&& data.total_results? 
-                <p>Carregando...</p>:
-                !data.total_results &&
-                <p>No results to: <b>{query}</b></p>}
+       
+            <div className="container">
+                <h2 className="title">
+                    Resultados para: <span className="query-text">{query}</span>                
+                </h2>
+                <div className="founds">Founds: {data.total_results??0}</div>
+                <div className="movies-container">
+                    {movies.length === 0&& data.total_results? 
+                    <p>Carregando...</p>:
+                    !data.total_results &&
+                    <p>No results to: <b>{query}</b></p>}
 
-                {movies.length > 0 && movies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+                    {movies.length > 0 && movies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
 
-            </div>
-            <div className="down-nav-bar">               
-                {buttons && buttons.map(e => 
-                    <button className={e == page? "btnselected":"none"} onClick={()=> navigate(`/search?q=${query}&page=${e}`)} key={e}>
-                        {e}
-                    </button>)} 
-            </div>
-        </div>        
+                </div>
+                <div className="down-nav-bar">               
+                    {/* {buttons && buttons.map(e => 
+                        <button className={e == page? "btnselected":"none"} onClick={()=> navigate(`/search?q=${query}&page=${e}`)} key={e}>
+                            {e}
+                        </button>)}  */}
+                    <ThemeProvider theme={darkTheme}>
+                        <CssBaseline />                
+                        <Pagination 
+                        color="primary" 
+                        count={pages} 
+                        page={parseInt(page)} 
+                        onChange={(event,value)=> navigate(`/search?q=${query}&page=${value}`)}  
+                        siblingCount={3}
+                        boundaryCount={2}/>
+                    </ThemeProvider>  
+                </div>
+            </div>     
+         
     )
   };
   
